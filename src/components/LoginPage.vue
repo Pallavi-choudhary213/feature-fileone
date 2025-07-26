@@ -1,36 +1,43 @@
 <template>
-  <div class="login-page">
-    <div class="login-card">
-      <h2 class="login-title">Welcome Back</h2>
-      <p class="login-subtitle">Please login to your account</p>
-      
-      <form @submit.prevent="login" class="login-form">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
+  <v-container fill-height class="d-flex align-center justify-center login-page">
+    <v-card class="pa-6 login-card" max-width="400">
+      <v-card-title class="headline font-weight-bold justify-center mb-4">Login Here</v-card-title>
+      <v-card-subtitle class="text-center mb-4">Please login your account</v-card-subtitle>
+      <v-form>
+        <v-text-field v-model="email" label="Email" type="email" color="primary" class="mb-4"></v-text-field>
+        <v-text-field v-model="password" label="Password" type="password" color="primary" class="mb-4"></v-text-field>
+        <v-btn type="submit" color="primary" class="mb-4">
+          Login
+        </v-btn>
+        <v-btn text color="primary" class="mb-4" @click="$router.push('/forgot-password')">
+          <v-icon>mdi-lock</v-icon> Forgot Password?
+        </v-btn>
+      </v-form>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
+      <template>
+        <v-container class="d-flex justify-center align-center" style="gap: 16px;">
+          <a href="https://www.google.com" target="_blank" rel="noopener">
+            <v-icon color="red">mdi-google</v-icon>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener">
+            <v-icon color="blue">mdi-facebook</v-icon>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener">
+            <v-icon color="purple">mdi-instagram</v-icon>
+          </a>
+          <a href="https://www.github.com" target="_blank" rel="noopener">
+            <v-icon color="black">mdi-github</v-icon>
+          </a>
+          <a href="https://www.apple.com" target="_blank" rel="noopener">
+            <v-icon color="black">mdi-apple</v-icon>
+          </a>
+        </v-container>
+      </template>
 
-        <button type="submit" class="login-button">Login</button>
-      </form>
 
-      <p class="register-link">Don't have an account? <a href="#">Sign up</a></p>
-    </div>
-  </div>
+
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -39,128 +46,32 @@ export default {
     return {
       email: '',
       password: '',
-      emailError: '',
-      passwordError: '',
     };
   },
   methods: {
     login() {
-      this.emailError = '';
-      this.passwordError = '';
-    }
-
-  }
+      console.log("Logging in with:", this.email, this.password);
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Background and layout */
 .login-page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-image: url('@/assets/loginpage.png'); 
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  widows: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
 }
 
-/* Card */
 .login-card {
-  background: #ffffff;
-  padding: 2.5rem 2rem;
   border-radius: 16px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
+  box-shadow: 0 15px 30px rgba(51, 42, 42, 0.1);
 }
 
-/* Titles */
-.login-title {
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
 
-.login-subtitle {
-  font-size: 1rem;
-  color: #777;
-  margin-bottom: 1.5rem;
-}
-
-/* Form */
-.login-form {
-  text-align: left;
-}
-
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #444;
-}
-
-input {
-  width: 92%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
-.input-error {
-  border-color: #e74c3c;
-}
-
-.error-text {
-  font-size: 0.875rem;
-  color: #e74c3c;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-/* Button */
-.login-button {
-  width: 100%;
-  background: #667eea;
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.login-button:hover {
-  background: #5a67d8;
-}
-
-/* Footer */
-.register-link {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.register-link a {
-  color: #667eea;
-  text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
 </style>
